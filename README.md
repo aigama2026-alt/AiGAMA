@@ -21,7 +21,7 @@ Plain HTML site hosted on GitHub Pages. No build step: what you see in the files
 ## Before going live (one time)
 
 1. **Legal pages** are drafts, not legal advice. Have them checked if you can.
-   When you have a company, add its name and postal address to section 1 of `privacy.html` and to `terms.html`.
+   Operator: Mindaugas Stankus, Savanorių pr. 268, Lithuania. It appears in section 1 of `privacy.html` and section 1 of `terms.html`. If you form a company or move, update all of these.
 
 2. **Connect the sign-up form** (free):
    - Create an account at https://formspree.io and make a new form.

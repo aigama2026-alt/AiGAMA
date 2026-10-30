@@ -9,23 +9,34 @@ Plain HTML site hosted on GitHub Pages. No build step: what you see in the files
 | `index.html` | Homepage |
 | `privacy.html` | Privacy Policy |
 | `terms.html` | Terms of Service |
+| `cookies.html` | Cookie Policy |
 | `assets/style.css` | All styles (colors, fonts, layout) |
 | `assets/main.js` | The "Get early access" popup |
+| `assets/consent.js` | Cookie banner (Accept / Reject) |
+| `assets/fonts/` | Fonts hosted on the site (no Google Fonts = GDPR-safe) |
 | `assets/robot-*.svg`, `assets/logo.svg` | Mascots and logo |
 | `CNAME` | Keeps the custom domain aigama.app — don't delete |
 | `robots.txt`, `sitemap.xml` | Help Google find the pages |
 
 ## Before going live (one time)
 
-1. **Fill in the placeholders** in `privacy.html` and `terms.html`. Search for `[` and replace:
-   `[Company legal name]`, `[Address]`, `[Country]`, `[City, Country]`, `[AI provider name]`.
-   These are drafts, not legal advice. Have them checked if you can.
+1. **Legal pages** are drafts, not legal advice. Have them checked if you can.
+   When you have a company, add its name and postal address to section 1 of `privacy.html` and to `terms.html`.
 
 2. **Connect the sign-up form** (free):
    - Create an account at https://formspree.io and make a new form.
    - Copy the form ID (looks like `xyzabcde`).
    - In `index.html`, find `https://formspree.io/f/YOUR_FORM_ID` and replace `YOUR_FORM_ID` with your ID.
    - Sign-ups now arrive in your email and in the Formspree dashboard.
+
+## Privacy rules to keep the site GDPR-safe
+
+- **Don't add Google Fonts, Google Analytics, YouTube embeds, Facebook pixels or chat widgets** directly. They send visitor data to other companies. If you want analytics later, load it only inside `loadAnalytics()` in `assets/consent.js` (it then runs only after "Accept"), and add it to `cookies.html` and section 5 of `privacy.html` first.
+- **Formspree:** in your Formspree account, accept their Data Processing Agreement (DPA). Only collect what the form already asks for.
+- **New service provider?** Add it to section 5 of `privacy.html` and change the "Last updated" date.
+- **Someone asks for their data or deletion?** Answer within one month. Delete them from Formspree and your email.
+- **Unsubscribe:** every early-access email you send must include a way to unsubscribe.
+- **New type of cookie?** Raise `VERSION` in `assets/consent.js` so everyone is asked again.
 
 ## Upload to GitHub (first time)
 
@@ -60,7 +71,9 @@ Update the "Last updated" date on that page.
 ## Check it works
 
 - The site opens at https://aigama.app
-- Privacy and Terms open from the footer
+- Privacy, Terms and Cookies open from the footer
+- The cookie banner shows on first visit; "Cookie settings" in the footer reopens it
+- The sign-up form can't be sent without ticking the consent box
 - "Build my ads" opens the popup with the website already filled in
 - A test sign-up arrives in Formspree
 - In GitHub → Settings → Pages: custom domain is `aigama.app` and "Enforce HTTPS" is ticked

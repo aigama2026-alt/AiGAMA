@@ -12,9 +12,6 @@
   <meta property="og:url" content="https://aigama.app/">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -228,6 +225,8 @@
     <nav aria-label="Footer">
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="#" data-cookie-settings>Cookie settings</a>
       <a href="mailto:info@aigama.app">Contact</a>
     </nav>
   </div>
@@ -250,9 +249,12 @@
         <input id="signup-email" name="email" type="email" autocomplete="email" required placeholder="you@yourbusiness.com">
         <input type="hidden" name="product" id="signup-product" value="">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
+        <label class="consent-check" for="signup-consent">
+          <input id="signup-consent" name="consent" type="checkbox" value="yes" required>
+          <span>I agree that AiGAMA may email me about early access. I can unsubscribe at any time. See the <a href="privacy.html">Privacy Policy</a>.</span>
+        </label>
         <button type="submit" class="btn btn-dark">Get early access</button>
         <p class="form-error" id="signup-error" role="alert" hidden></p>
-        <p class="muted small">We only use your email to tell you about AiGAMA. <a href="privacy.html">Privacy</a></p>
       </form>
     </div>
 
@@ -266,5 +268,6 @@
 </dialog>
 
 <script src="assets/main.js"></script>
+<script src="assets/consent.js"></script>
 </body>
 </html>

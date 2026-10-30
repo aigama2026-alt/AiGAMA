@@ -1,4 +1,11 @@
 /* AiGAMA site styles */
+
+/* Fonts are hosted on this site (no Google Fonts request = no data sent to Google) */
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/source-sans-3-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/source-sans-3-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/source-sans-3-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 800; font-display: swap; src: url('fonts/source-sans-3-latin-800-normal.woff2') format('woff2'); }
+
 :root {
   --ink: #111827;
   --ink-2: #374151;
@@ -185,6 +192,23 @@ p { margin: 0; }
 .legal ul { padding-left: 22px; margin: 12px 0 0; }
 .legal li + li { margin-top: 6px; }
 .legal .box { background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-top: 24px; }
+
+/* Cookie banner */
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; pointer-events: none; }
+.consent[hidden] { display: none; }
+.consent-inner { pointer-events: auto; max-width: 720px; width: 100%; background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 12px 40px rgba(17, 24, 39, 0.15); padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.consent-text { flex: 1 1 360px; font-size: 15px; color: var(--ink-2); }
+.consent-text a { color: var(--ink); }
+.consent-actions { display: flex; gap: 10px; flex: 0 0 auto; }
+.consent-actions .btn { min-width: 104px; min-height: 44px; }
+.consent-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 400 !important; color: var(--ink-2); line-height: 1.45; }
+.consent-check input { width: 18px; height: 18px; min-height: 0 !important; margin: 2px 0 0; padding: 0; flex: 0 0 18px; accent-color: var(--ink); }
+
+/* Legal tables */
+.legal table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 15px; }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.legal th { color: var(--ink); font-weight: 700; background: var(--soft); }
+.table-scroll { overflow-x: auto; }
 
 /* Phones */
 @media (max-width: 640px) {

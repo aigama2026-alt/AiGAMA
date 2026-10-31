@@ -199,8 +199,14 @@ p { margin: 0; }
 .consent-inner { pointer-events: auto; max-width: 720px; width: 100%; background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 12px 40px rgba(17, 24, 39, 0.15); padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .consent-text { flex: 1 1 360px; font-size: 15px; color: var(--ink-2); }
 .consent-text a { color: var(--ink); }
-.consent-actions { display: flex; gap: 10px; flex: 0 0 auto; }
-.consent-actions .btn { min-width: 104px; min-height: 44px; }
+.consent-actions { display: flex; flex-wrap: wrap; gap: 10px; flex: 1 1 100%; justify-content: flex-end; }
+.consent-actions .btn { min-width: 112px; min-height: 44px; }
+.consent-actions .btn[hidden] { display: none; }
+.consent-details { flex: 1 1 100%; display: grid; gap: 10px; }
+.consent-details[hidden] { display: none; }
+.consent-row { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; font-size: 14px; color: var(--ink-2); line-height: 1.45; cursor: pointer; }
+.consent-row input { width: 18px; height: 18px; margin: 2px 0 0; flex: 0 0 18px; accent-color: var(--ink); }
+.consent-row strong { color: var(--ink); }
 .consent-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 400 !important; color: var(--ink-2); line-height: 1.45; }
 .consent-check input { width: 18px; height: 18px; min-height: 0 !important; margin: 2px 0 0; padding: 0; flex: 0 0 18px; accent-color: var(--ink); }
 

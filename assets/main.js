@@ -67,6 +67,10 @@
         if (!res.ok) throw new Error('Request failed');
         step.hidden = true;
         done.hidden = false;
+        // Conversion event for GTM (GA4 / Google Ads). No personal data is sent.
+        // Tags only fire if the visitor allowed them in the cookie banner.
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', lead_product: product.value || 'general' });
         form.reset();
         if (heroWebsite) heroWebsite.value = '';
       })

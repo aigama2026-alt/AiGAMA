@@ -32,7 +32,15 @@ Plain HTML site hosted on GitHub Pages. No build step: what you see in the files
 ## Privacy rules to keep the site GDPR-safe
 
 - **Google Tag Manager** (`GTM-PM2RD9J4`) is installed in `assets/consent.js` and loads **only after "Accept"**. Never paste the GTM snippet into the HTML pages directly, or it will run without consent.
-- **Inside GTM:** only add Google Analytics 4. In Google Analytics, keep **Google signals** and **ads personalization off**, and set **data retention to 14 months** (Admin → Data collection and modification → Data retention). If you add any other tag in GTM (Google Ads, Meta pixel, Hotjar…), tell me first: the Cookie and Privacy pages and the banner must be updated before it goes live.
+- **Inside GTM**, set up tags like this so they follow the visitor's choice (Consent Mode v2 is already sent by the site):
+  - **GA4 tag** – fires on All Pages. Built-in consent: needs `analytics_storage`.
+  - **Google Ads Conversion Tracking** – trigger: Custom Event `generate_lead` (sent when someone joins early access). Built-in consent: needs `ad_storage`.
+  - **Google Ads Remarketing** – fires on All Pages. Built-in consent: needs `ad_storage` and `ad_personalization`.
+  - **Conversion Linker** – fires on All Pages.
+  - In GTM Admin → Container Settings, tick **Enable consent overview** to check each tag.
+- **In Google Analytics:** set data retention to 14 months. If you link GA4 to Google Ads or turn on Google signals, that's covered by the Marketing consent.
+- **Enhanced conversions** (sending hashed emails to Google): don't turn on without telling me first; the policies must mention it.
+- **Any other tag** (Meta pixel, LinkedIn, Hotjar…): tell me first. The banner and policies must name it before it goes live.
 - **Don't add Google Fonts, YouTube embeds, Facebook pixels or chat widgets** directly. They send visitor data to other companies.
 - **Formspree:** in your Formspree account, accept their Data Processing Agreement (DPA). Only collect what the form already asks for.
 - **New service provider?** Add it to section 5 of `privacy.html` and change the "Last updated" date.

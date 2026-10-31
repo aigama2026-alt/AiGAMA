@@ -4,7 +4,8 @@
 // To add analytics later, put its loading code inside loadAnalytics() below.
 (function () {
   var KEY = 'aigama_consent';
-  var VERSION = 1;          // raise this number if you add new cookie types, so everyone is asked again
+  var VERSION = 2;          // raise this number if you add new cookie types, so everyone is asked again
+  var GTM_ID = 'GTM-PM2RD9J4'; // Google Tag Manager container
   var MAX_AGE_DAYS = 365;   // ask again after 12 months
 
   function read() {
@@ -26,12 +27,42 @@
   function loadAnalytics() {
     if (analyticsLoaded) return;
     analyticsLoaded = true;
-    // No analytics are installed yet.
-    // Example later: create a <script> tag for a privacy-friendly analytics tool here.
+
+    // Google Tag Manager – loads ONLY after the visitor clicks "Accept".
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    // Google Consent Mode: analytics allowed, advertising always off.
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    gtag('js', new Date());
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  }
+
+  // Remove Google Analytics cookies when the visitor rejects
+  function clearAnalyticsCookies() {
+    var host = location.hostname;
+    var domains = ['', host, '.' + host, '.' + host.replace(/^www\./, '')];
+    document.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (!/^(_ga|_gid|_gat)/.test(name)) return;
+      domains.forEach(function (d) {
+        document.cookie = name + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : '');
+      });
+    });
   }
 
   function apply(c) {
     if (c && c.analytics) loadAnalytics();
+    else clearAnalyticsCookies();
   }
 
   var banner;
@@ -44,7 +75,7 @@
     banner.innerHTML =
       '<div class="consent-inner">' +
         '<p class="consent-text"><strong>Cookies</strong><br>' +
-        'We use only what’s needed to run this site. With your OK, we may also use analytics to see how the site is used. ' +
+        'We use only what’s needed to run this site. With your OK, we also use Google Analytics to see how the site is used. ' +
         '<a href="cookies.html">Cookie policy</a></p>' +
         '<div class="consent-actions">' +
           '<button type="button" class="btn btn-light" data-consent="reject">Reject</button>' +

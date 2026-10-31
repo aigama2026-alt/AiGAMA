@@ -31,7 +31,9 @@ Plain HTML site hosted on GitHub Pages. No build step: what you see in the files
 
 ## Privacy rules to keep the site GDPR-safe
 
-- **Don't add Google Fonts, Google Analytics, YouTube embeds, Facebook pixels or chat widgets** directly. They send visitor data to other companies. If you want analytics later, load it only inside `loadAnalytics()` in `assets/consent.js` (it then runs only after "Accept"), and add it to `cookies.html` and section 5 of `privacy.html` first.
+- **Google Tag Manager** (`GTM-PM2RD9J4`) is installed in `assets/consent.js` and loads **only after "Accept"**. Never paste the GTM snippet into the HTML pages directly, or it will run without consent.
+- **Inside GTM:** only add Google Analytics 4. In Google Analytics, keep **Google signals** and **ads personalization off**, and set **data retention to 14 months** (Admin → Data collection and modification → Data retention). If you add any other tag in GTM (Google Ads, Meta pixel, Hotjar…), tell me first: the Cookie and Privacy pages and the banner must be updated before it goes live.
+- **Don't add Google Fonts, YouTube embeds, Facebook pixels or chat widgets** directly. They send visitor data to other companies.
 - **Formspree:** in your Formspree account, accept their Data Processing Agreement (DPA). Only collect what the form already asks for.
 - **New service provider?** Add it to section 5 of `privacy.html` and change the "Last updated" date.
 - **Someone asks for their data or deletion?** Answer within one month. Delete them from Formspree and your email.

@@ -2,6 +2,8 @@
 
 Plain HTML site hosted on GitHub Pages. No build step: what you see in the files is what goes live.
 
+The site presents AiGAMA as an **internal tool**: used only by our team on Google Ads accounts we manage. There is no public sign-up or login.
+
 ## Files
 
 | File | What it is |
@@ -11,79 +13,40 @@ Plain HTML site hosted on GitHub Pages. No build step: what you see in the files
 | `terms.html` | Terms of Service |
 | `cookies.html` | Cookie Policy |
 | `assets/style.css` | All styles (colors, fonts, layout) |
-| `assets/main.js` | The "Get early access" popup |
-| `assets/consent.js` | Cookie banner (Accept / Reject) |
+| `assets/consent.js` | Cookie banner + Google Tag Manager (loads only after consent) |
 | `assets/fonts/` | Fonts hosted on the site (no Google Fonts = GDPR-safe) |
 | `assets/robot-*.svg`, `assets/logo.svg` | Mascots and logo |
 | `CNAME` | Keeps the custom domain aigama.app — don't delete |
 | `robots.txt`, `sitemap.xml` | Help Google find the pages |
 
-## Before going live (one time)
-
-1. **Legal pages** are drafts, not legal advice. Have them checked if you can.
-   Operator: Mindaugas Stankus, Savanorių pr. 268, Lithuania. It appears in section 1 of `privacy.html` and section 1 of `terms.html`. If you form a company or move, update all of these.
-
-2. **Connect the sign-up form** (free):
-   - Create an account at https://formspree.io and make a new form.
-   - Copy the form ID (looks like `xyzabcde`).
-   - In `index.html`, find `https://formspree.io/f/YOUR_FORM_ID` and replace `YOUR_FORM_ID` with your ID.
-   - Sign-ups now arrive in your email and in the Formspree dashboard.
+Operator details (Mindaugas Stankus, Savanorių pr. 268, Lithuania, info@ / admin@aigama.app) are in section 1 of `privacy.html` and `terms.html`. Update both if anything changes.
 
 ## Privacy rules to keep the site GDPR-safe
 
-- **Google Tag Manager** (`GTM-PM2RD9J4`) is installed in `assets/consent.js` and loads **only after "Accept"**. Never paste the GTM snippet into the HTML pages directly, or it will run without consent.
-- **Inside GTM**, set up tags like this so they follow the visitor's choice (Consent Mode v2 is already sent by the site):
-  - **GA4 tag** – fires on All Pages. Built-in consent: needs `analytics_storage`.
-  - **Google Ads Conversion Tracking** – trigger: Custom Event `generate_lead` (sent when someone joins early access). Built-in consent: needs `ad_storage`.
-  - **Google Ads Remarketing** – fires on All Pages. Built-in consent: needs `ad_storage` and `ad_personalization`.
-  - **Conversion Linker** – fires on All Pages.
-  - In GTM Admin → Container Settings, tick **Enable consent overview** to check each tag.
-- **In Google Analytics:** set data retention to 14 months. If you link GA4 to Google Ads or turn on Google signals, that's covered by the Marketing consent.
-- **Enhanced conversions** (sending hashed emails to Google): don't turn on without telling me first; the policies must mention it.
-- **Any other tag** (Meta pixel, LinkedIn, Hotjar…): tell me first. The banner and policies must name it before it goes live.
-- **Don't add Google Fonts, YouTube embeds, Facebook pixels or chat widgets** directly. They send visitor data to other companies.
-- **Formspree:** in your Formspree account, accept their Data Processing Agreement (DPA). Only collect what the form already asks for.
-- **New service provider?** Add it to section 5 of `privacy.html` and change the "Last updated" date.
-- **Someone asks for their data or deletion?** Answer within one month. Delete them from Formspree and your email.
-- **Unsubscribe:** every early-access email you send must include a way to unsubscribe.
-- **New type of cookie?** Raise `VERSION` in `assets/consent.js` so everyone is asked again.
+- **Google Tag Manager** (`GTM-PM2RD9J4`) is in `assets/consent.js` and loads **only after the visitor allows Analytics or Marketing**. Never paste the GTM snippet into the HTML pages.
+- **Inside GTM**, give each tag its consent setting (Consent Mode v2 is sent by the site):
+  - **GA4** – All Pages, needs `analytics_storage`.
+  - **Google Ads Conversion** – needs `ad_storage`. Suggested trigger: click on a `mailto:` link (contact).
+  - **Google Ads Remarketing** – All Pages, needs `ad_storage` + `ad_personalization`.
+  - **Conversion Linker** – All Pages.
+- **In Google Analytics:** data retention 14 months.
+- **Any other tag** (Meta, LinkedIn, Hotjar, enhanced conversions…): update `cookies.html`, section 6 of `privacy.html` and the banner text first, and raise `VERSION` in `assets/consent.js`.
+- **Don't add Google Fonts, YouTube embeds or chat widgets** directly.
+- **Someone asks for their data or deletion?** Answer within one month.
 
-## Upload to GitHub (first time)
+## How to update
 
-1. Open your repository on github.com.
-2. Delete the old `index.html`, `privacy.html`, `terms.html` (or just overwrite them in the next step).
-3. Click **Add file → Upload files**, drag in **everything from this folder** (including the `assets` folder), and click **Commit changes**.
-4. Wait 1–2 minutes and open https://aigama.app (press Ctrl+F5 / Cmd+Shift+R to skip the cache).
+**Small text change:** open the file on github.com → pencil icon → edit → **Commit changes**. Live in 1–2 minutes.
 
-## How to update later
+**Replace a file:** **Add file → Upload files**, drop in the file with the same name, commit. Files in `assets` must be uploaded inside the `assets` folder.
 
-**Small text change**
-1. On github.com, open the file (for example `index.html`).
-2. Click the pencil icon (Edit).
-3. Find the text (Ctrl+F), change it, then click **Commit changes**.
-4. Live in 1–2 minutes.
+**Sections in `index.html`:** `<!-- HERO -->`, `<!-- WHAT IT DOES -->`, `<!-- HOW IT WORKS -->`, `<!-- WHO USES IT -->`, `<!-- DATA AND SECURITY -->`, `<!-- FAQ -->`.
 
-**Replace a whole file or image**
-- Click **Add file → Upload files**, drop in the new file with the **same name**, commit.
-
-**Where things are in `index.html`**
-Each section starts with a comment: `<!-- HERO -->`, `<!-- 3 STEPS -->`, `<!-- NOT JUST AI -->`, `<!-- RESULTS -->`, `<!-- FEATURES -->`, `<!-- PRODUCTS -->`, `<!-- FAQ -->`, `<!-- CTA -->`, `<!-- EARLY ACCESS POPUP -->`.
-
-**Add a FAQ question**
-Copy one line that starts with `<details class="card">` and change the question and answer.
-
-**Change colors**
-At the top of `assets/style.css`, under `:root`.
-
-**After changing Privacy or Terms**
-Update the "Last updated" date on that page.
+**After changing a legal page:** update its "Last updated" date.
 
 ## Check it works
 
-- The site opens at https://aigama.app
+- https://aigama.app opens, with the "Internal tool" label
 - Privacy, Terms and Cookies open from the footer
-- The cookie banner shows on first visit; "Cookie settings" in the footer reopens it
-- The sign-up form can't be sent without ticking the consent box
-- "Build my ads" opens the popup with the website already filled in
-- A test sign-up arrives in Formspree
-- In GitHub → Settings → Pages: custom domain is `aigama.app` and "Enforce HTTPS" is ticked
+- The cookie banner shows on first visit; "Cookie settings" reopens it
+- In GitHub → Settings → Pages: custom domain `aigama.app`, "Enforce HTTPS" ticked

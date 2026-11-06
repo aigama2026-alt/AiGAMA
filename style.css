@@ -1,0 +1,146 @@
+/* AiGAMA – internal tool site. All files are in one folder. */
+
+/* Fonts hosted on this site (no Google Fonts request) */
+@font-face { font-family: 'Source Sans 3'; font-weight: 400; font-display: swap; src: url('source-sans-3-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 600; font-display: swap; src: url('source-sans-3-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 700; font-display: swap; src: url('source-sans-3-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 800; font-display: swap; src: url('source-sans-3-latin-800-normal.woff2') format('woff2'); }
+
+:root {
+  --ink: #111827;
+  --ink-2: #374151;
+  --grey: #6B7280;
+  --light-grey: #9CA3AF;
+  --line: #E5E7EB;
+  --line-soft: #F3F4F6;
+  --soft: #F7F7F8;
+  --green: #16A34A;
+  --violet: #7C3AED;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: #FFFFFF; color: var(--ink);
+  font-family: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--ink); }
+h1, h2, h3, p { margin: 0; }
+.muted { color: var(--grey); }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.narrow { max-width: 760px; }
+.center { text-align: center; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 18px; border-radius: 10px;
+  font: 600 15px 'Source Sans 3', system-ui, sans-serif; text-decoration: none; cursor: pointer;
+  border: 1px solid var(--line); background: #FFFFFF; color: var(--ink);
+}
+.btn:hover { background: var(--soft); }
+.btn-dark { background: var(--ink); border-color: var(--ink); color: #FFFFFF; }
+.btn-dark:hover { background: #1F2937; }
+.btn-locked { color: var(--light-grey); background: var(--soft); border-color: var(--line); cursor: not-allowed; width: 100%; }
+.btn-locked:hover { background: var(--soft); }
+.btn:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible { outline: 3px solid #93C5FD; outline-offset: 2px; }
+
+/* Top bar (like the app) */
+.topbar { border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; }
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo b { font-weight: 800; font-size: 20px; }
+.logo span { font-size: 20px; color: var(--light-grey); }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tabs a { text-decoration: none; color: var(--grey); font-size: 15px; padding: 8px 14px; border-radius: 10px; }
+.tabs a:hover { color: var(--ink); background: var(--soft); }
+.tabs a.active { background: var(--ink); color: #FFFFFF; }
+.access-chip { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; padding: 9px 14px; background: var(--soft); border-radius: 10px; border-left: 4px solid var(--violet); }
+
+/* Home */
+.home { padding: 48px 0 24px; text-align: center; }
+.home img { display: block; margin: 0 auto; }
+.greeting { margin-top: 18px; font-size: 15px; }
+.home h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.01em; margin-top: 6px; }
+.home .sub { margin: 10px auto 0; max-width: 620px; font-size: 17px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 36px; text-align: left; }
+.card { background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; }
+.tool { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.tool .icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.tool h3 { font-size: 19px; margin-top: 6px; }
+.tool p { font-size: 14px; flex: 1; }
+.tool .btn { margin-top: 10px; font-size: 14px; }
+
+/* Panels */
+.section { padding: 48px 0; }
+.section h2 { font-size: 26px; font-weight: 800; }
+.section .intro { margin-top: 6px; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 20px; }
+.steps .card { padding: 20px; }
+.num { width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: #FFFFFF; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.num.green { background: var(--green); }
+.steps h3 { font-size: 16px; margin: 12px 0 4px; }
+.steps p { font-size: 14px; }
+
+.panel { padding: 24px; background: var(--soft); border: 1px solid var(--line); border-radius: 14px; }
+.panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px 28px; margin-top: 16px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--ink-2); }
+.check svg { flex: 0 0 18px; margin-top: 3px; }
+.panel-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+/* FAQ */
+.faq details { padding: 16px 20px; margin-top: 10px; }
+.faq summary { cursor: pointer; list-style: none; font-weight: 600; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--grey); font-size: 20px; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin-top: 8px; font-size: 15px; }
+
+/* Footer */
+.footer { border-top: 1px solid var(--line); margin-top: 32px; }
+.footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 22px; padding-bottom: 30px; font-size: 14px; }
+.footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.footer a { color: #4B5563; text-decoration: none; }
+.footer a:hover { color: var(--ink); text-decoration: underline; }
+
+/* Legal pages */
+.legal { padding: 44px 0 40px; }
+.legal h1 { font-size: 36px; font-weight: 800; }
+.legal .updated { margin-top: 6px; }
+.legal h2 { font-size: 21px; margin: 34px 0 10px; }
+.legal h3 { font-size: 17px; margin: 22px 0 8px; }
+.legal p, .legal li { font-size: 16px; line-height: 1.65; color: var(--ink-2); }
+.legal p + p { margin-top: 10px; }
+.legal ul { padding-left: 22px; margin: 10px 0 0; }
+.legal li + li { margin-top: 5px; }
+.legal .box { background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-top: 20px; }
+.table-scroll { overflow-x: auto; margin-top: 10px; }
+.legal table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 9px 11px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.legal th { color: var(--ink); background: var(--soft); }
+
+/* Cookie banner */
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; display: flex; justify-content: center; pointer-events: none; }
+.consent[hidden] { display: none; }
+.consent-inner { pointer-events: auto; max-width: 720px; width: 100%; background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 12px 40px rgba(17, 24, 39, 0.15); padding: 18px 20px; display: flex; flex-wrap: wrap; gap: 16px; }
+.consent-text { flex: 1 1 100%; font-size: 15px; color: var(--ink-2); }
+.consent-actions { display: flex; flex-wrap: wrap; gap: 10px; flex: 1 1 100%; justify-content: flex-end; }
+.consent-actions .btn { min-width: 112px; }
+.consent-actions .btn[hidden] { display: none; }
+.consent-details { flex: 1 1 100%; display: grid; gap: 10px; }
+.consent-details[hidden] { display: none; }
+.consent-row { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+.consent-row input { width: 18px; height: 18px; margin: 2px 0 0; flex: 0 0 18px; accent-color: var(--ink); }
+.consent-row strong { color: var(--ink); }
+
+/* Phones */
+@media (max-width: 640px) {
+  .home h1 { font-size: 30px; }
+  .tabs { order: 3; width: 100%; }
+  .access-chip { font-size: 13px; }
+  .legal h1 { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

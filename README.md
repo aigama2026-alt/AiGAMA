@@ -6,7 +6,8 @@ It presents AiGAMA as an internal tool: team access only, no public sign-up.
 ## Files
 - `index.html` (home), `privacy.html`, `terms.html`, `cookies.html`
 - `style.css` (look), `consent.js` (cookie banner + Google Tag Manager GTM-PM2RD9J4, loads only after consent)
-- `logo.svg`, `robot-hello.svg`, `robot-think.svg`
+- `logo.svg` (AiGAMA wordmark), `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`, `og-image.png` (link preview)
+- `robot-hello.svg`, `robot-think.svg`
 - `source-sans-3-latin-*.woff2` + `font-license.txt` (fonts hosted here, no Google Fonts)
 - `CNAME` (domain aigama.app, don't delete), `robots.txt`, `sitemap.xml`
 
